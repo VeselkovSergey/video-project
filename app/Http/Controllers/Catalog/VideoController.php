@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Catalog;
 
 use App\Helpers\ArrayHelper;
-use App\Helpers\Files;
+use App\Models\Files;
 use App\Helpers\ResultGenerate;
 use App\Models\Videos;
 use Illuminate\Http\Request;

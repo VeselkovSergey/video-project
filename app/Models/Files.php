@@ -47,18 +47,14 @@ class Files extends Model
         ]);
     }
 
-    /**
-     * @param Request $request
-     * @return Application|ResponseFactory|Response|void
-     * @throws FileNotFoundException
-     */
-    public static function GetFile(Request $request)
+    public static function DeleteFile($fileId)
     {
-        $file = self::query()->find($request->file_id);
+        $file = self::query()->find($fileId);
         if ($file) {
-            $filePath = Storage::disk($file->disk)->get($file->path . '/' . $file->hash_name);
-            return response($filePath)->header('Content-type',$file->type);
+            $filePath = Storage::disk($file->disk)->delete($file->path . '/' . $file->hash_name);
+            $file->delete();
+            return true;
         }
-        abort(404);
+        return false;
     }
 }
