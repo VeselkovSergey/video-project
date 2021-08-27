@@ -27,7 +27,7 @@ class VideoController
 
     public function Index()
     {
-        $allVideos = [];//Videos::all();
+        $allVideos = Videos::all();
         return view('catalog.video.all', [
             'allVideos' => $allVideos
         ]);
@@ -43,7 +43,7 @@ class VideoController
 
     public function CreateOrEdit(Request $request)
     {
-        $video = null;//Videos::find($request->videoId);
+        $video = Videos::find($request->videoId);
         return view('catalog.video.createOrEdit', [
             'video' => $video
         ]);
