@@ -21,12 +21,11 @@ Route::group(['prefix' => '/', 'namespace' => 'Home'], function () {
         ->name('home-page');
 
 
+});
 
-    Route::group(['prefix' => '/file'], function () {
-        Route::get('/{hashFile}', ['Files@GetFileByHash'])
-            ->name('get-file-by-hash');
-    });
-
+Route::group(['prefix' => '/file'], function () {
+    Route::get('/{hashFile}', 'Files@GetFileByHash')
+        ->name('get-file-by-hash');
 });
 
 Route::group(['prefix' => '/catalog', 'namespace' => 'Catalog'], function () {

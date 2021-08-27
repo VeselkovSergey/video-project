@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Files extends Model
 {
-    use HasFactory, Notifiable;
+    use Notifiable;
 
     protected $fillable = [
         'hash_name',
