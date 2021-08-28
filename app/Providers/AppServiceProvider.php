@@ -15,8 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        dd(request()->secure(), \Illuminate\Support\Facades\Request::getScheme());
-        dd(request());
+//
+//        dd(request());
         //
 //        URL::forceScheme('https');
     }
@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        dd(request()->secure(), \Illuminate\Support\Facades\Request::getScheme(), \request());
         //
     }
 }
