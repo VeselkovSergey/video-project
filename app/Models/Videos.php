@@ -3,7 +3,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
@@ -35,11 +34,11 @@ class Videos extends Model
 
     public function LinkFileVideo()
     {
-        return \App\Helpers\Files::GetLinkFileById($this->fileVideoId);
+        return \App\Http\Controllers\Files::GetLinkFileById($this->fileVideoId);
     }
 
     public function LinkFilePosterVideo()
     {
-        return \App\Helpers\Files::GetLinkFileById($this->fileVideoPosterId);
+        return \App\Http\Controllers\Files::GetLinkFileById($this->fileVideoPosterId);
     }
 }
