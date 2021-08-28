@@ -23,7 +23,7 @@
     <main class="videoContainer">
         <div class="videoContainer__inner">
             <div class="videoContainer__video">
-                <video src="{{$video->LinkFileVideo()}}" preload="auto"
+                <video src="{{$video->LinkFileVideo()}}" preload="metadata"
                        poster="{{$video->LinkFilePosterVideo()}}"></video>
             </div>
             <div class="videoContainer__test">
