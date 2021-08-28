@@ -15,10 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//
-//        dd(request());
-        //
-//        URL::forceScheme('https');
+        if (request()->server('SERVER_NAME') !== "127.0.0.1" || request()->server('SERVER_NAME') !== "localhost") {
+            URL::forceScheme('https');
+        }
     }
 
     /**
@@ -28,7 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        dd(request()->secure(), \Illuminate\Support\Facades\Request::getScheme(), \request());
         //
     }
 }
