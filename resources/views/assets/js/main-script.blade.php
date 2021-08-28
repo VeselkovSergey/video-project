@@ -138,6 +138,12 @@
             };
 
             xhr.upload.onprogress = function(event) {
+                let percent = parseInt(event.loaded * 100 / event.total);
+                let textInLoader = document.body.querySelector('.text-in-spinner');
+                if (textInLoader !== null) {
+                    textInLoader.innerHTML = percent + '%';
+                }
+
                 console.log( 'Загружено на сервер ' + event.loaded + ' байт из ' + event.total );
             }
 
@@ -148,5 +154,4 @@
             xhr.send(formData);
         });
     }
-
 </script>
