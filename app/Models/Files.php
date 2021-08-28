@@ -34,6 +34,7 @@ class Files extends Model
         $originalFileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $extension = $file->extension();
         $type = $file->getMimeType();
+        $size = $file->getSize();
         $hashFileName = pathinfo($file->hashName(), PATHINFO_FILENAME);
         $file->storeAs($path, $hashFileName, $disk);
 
@@ -41,6 +42,7 @@ class Files extends Model
             'hash_name' => $hashFileName,
             'original_name' => $originalFileName,
             'extension' => $extension,
+            'size' => $size,
             'type' => $type,
             'disk' => $disk,
             'path' => $path,
