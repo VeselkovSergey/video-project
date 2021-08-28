@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        dd(request()->secure());
+        dd(request()->secure(), \Illuminate\Support\Facades\Request::getScheme());
         dd(request());
         //
 //        URL::forceScheme('https');
