@@ -142,8 +142,8 @@
 
             @foreach($answers['start'][$partKey] as $answerKey => $answer)
 
-            let buttonAddAnswerManualCall_{{$answerKey}} = document.body.querySelector('button[data-part-id="' + (partId - 1) + '"]');
-            AddAnswer(buttonAddAnswerManualCall_{{$answerKey}}, {{$answers['right'][$partKey][$answerKey]}}, "{{$answers['text'][$partKey][$answerKey]}}", "{{$answers['start'][$partKey][$answerKey]}}", "{{$answers['end'][$partKey][$answerKey]}}");
+            let buttonAddAnswerManualCall_{{$partKey}}_{{$answerKey}} = document.body.querySelector('button[data-part-id="' + (partId - 1) + '"]');
+            AddAnswer(buttonAddAnswerManualCall_{{$partKey}}_{{$answerKey}}, {{$answers['right'][$partKey][$answerKey]}}, "{{$answers['text'][$partKey][$answerKey]}}", "{{$answers['start'][$partKey][$answerKey]}}", "{{$answers['end'][$partKey][$answerKey]}}");
 
             @endforeach
 
