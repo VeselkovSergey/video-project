@@ -38,7 +38,7 @@ Route::group(['prefix' => '/catalog', 'namespace' => 'Catalog'], function () {
         Route::get('/create', 'VideoController@CreateOrEdit')
             ->name('video-create-page');
 
-        Route::get('/edit/{videoId}', 'VideoController@CreateOrEdit')
+        Route::get('/edit/{videoId?}', 'VideoController@CreateOrEdit')
             ->name('video-edit-page');
 
         Route::post('/save', 'VideoController@ChangeSave')

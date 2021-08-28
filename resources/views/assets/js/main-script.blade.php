@@ -13,7 +13,7 @@
     function ShowLoader() {
         let loader = document.createElement("div");
         loader.className = 'loader';
-        loader.innerHTML = '<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';
+        loader.innerHTML = '<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class="text-in-spinner"></div>';
         document.body.prepend(loader);
     }
 

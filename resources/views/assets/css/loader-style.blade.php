@@ -55,6 +55,20 @@
 
 <style>
 
+    .text-in-spinner {
+        position: fixed;
+        z-index: 10000;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        top: 40px;
+        left: 40px;
+        color: white;
+        animation: lds-spinner 1.2s linear infinite;
+    }
+
     .lds-spinner {
 
         /*

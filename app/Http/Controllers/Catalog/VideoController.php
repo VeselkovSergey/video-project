@@ -208,7 +208,7 @@ class VideoController
         }
 
         if ((empty($request->file('videoFileInput-0')) === false && empty($request->videoId) === true) || (empty($request->file('videoFileInput-0')) === false && empty($request->videoId) === false)) {
-            if (in_array($videoFileInput->getMimeType(), ['video/mp4', 'video/x-m4v', 'video/*'])) {
+            if (in_array($videoFileInput->getMimeType(), ['video/mp4', 'video/x-m4v', 'video/*', 'video/webm'])) {
                 if (empty($request->videoId) === false) {
                     Files::DeleteFile($videoFind->fileVideoId);
                 }
