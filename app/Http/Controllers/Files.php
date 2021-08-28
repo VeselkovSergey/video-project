@@ -45,8 +45,9 @@ class Files
         $file = FilesDB::where('hash_name', $request->hashFile)->first();
         if ($file) {
             if (in_array($file->type, ['video/mp4', 'video/x-m4v', 'video/*', 'video/webm'])) {
-                $path = './' . $file->hash_name;
-                $stream = fopen($path, "r");
+                //$path = './' . $file->hash_name;
+                //$stream = fopen($path, "r");
+                $stream = Storage::disk($file->disk)->readStream($file->path . '/' . $file->hash_name);
                 $response_code = 200;
                 $headers = array("Content-type" => $file->type);
 
