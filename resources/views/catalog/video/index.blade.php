@@ -84,7 +84,9 @@
             let currentTime = blobVideo.currentTime;
             blobVideo.src = vid;
             blobVideo.currentTime = currentTime;
-            blobVideo.play();
+            if (videoIsPlaying === true) {
+                blobVideo.play();
+            }
         }
     }
     req.onerror = function() {

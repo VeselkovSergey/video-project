@@ -41,6 +41,7 @@
         let stopTime = videoMap[step]['intro'].end;
         let nextQuestionStartTime = videoMap[step]['intro'].start;
         let nextQuestionStopTime = videoMap[step]['intro'].end;
+        let videoIsPlaying = false;
 
         buttonPlay.addEventListener('click', () => {
             PlayVideo();
@@ -85,6 +86,7 @@
         function PlayVideo() {
             if (!waitAnswer) {
                 video.play();
+                videoIsPlaying = true;
                 buttonPause.style.opacity = '1';
                 buttonPlay.style.opacity = '0';
 
@@ -96,6 +98,7 @@
         function PauseVideo() {
             if (!waitAnswer) {
                 video.pause();
+                videoIsPlaying = false;
                 buttonPlay.style.opacity = '1';
                 buttonPause.style.opacity = '0';
 
