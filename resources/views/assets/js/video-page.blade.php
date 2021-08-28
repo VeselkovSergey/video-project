@@ -160,7 +160,9 @@
                 step = event.target.dataset.step;
                 stopTime = videoMap[step].question.end;
                 video.currentTime = videoMap[step].question.start;
-                document.body.querySelector('.videoContainer__step').style.display = 'none';
+                document.body.querySelectorAll('.videoContainer__step').forEach((element) => {
+                    element.style.display = 'none';
+                });
                 PlayVideo();
             });
         });

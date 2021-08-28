@@ -20,7 +20,6 @@ Route::group(['prefix' => '/', 'namespace' => 'Home'], function () {
     Route::get('/', 'HomeController@Index')
         ->name('home-page');
 
-
 });
 
 Route::group(['prefix' => '/file'], function () {
@@ -36,16 +35,16 @@ Route::group(['prefix' => '/catalog', 'namespace' => 'Catalog'], function () {
             ->name('all-video-page');
 
         Route::get('/create', 'VideoController@CreateOrEdit')
-            ->name('video-create-page');
+            ->name('video-create-page')->middleware('auth');
 
         Route::get('/edit/{videoId?}', 'VideoController@CreateOrEdit')
-            ->name('video-edit-page');
+            ->name('video-edit-page')->middleware('auth');
 
         Route::post('/save', 'VideoController@ChangeSave')
-            ->name('video-save');
+            ->name('video-save')->middleware('auth');
 
         Route::post('/delete/{videoId}', 'VideoController@Delete')
-            ->name('video-delete');
+            ->name('video-delete')->middleware('auth');
 
         Route::get('/{semanticUrlVideo}','VideoController@VideoPage')
             ->name('video-page');
@@ -60,6 +59,11 @@ Route::group(['prefix' => '/management', 'namespace' => 'Management'], function 
         ->name('management-home-page');
 
     Route::group(['prefix' => '/auth'], function () {
+
+        Route::get('/default-login', function () {
+            return redirect(\route('management-login-page'));
+        })->name('login');
+
         Route::get('/login', 'ManagementController@LoginPage')
             ->name('management-login-page');
 
@@ -67,7 +71,7 @@ Route::group(['prefix' => '/management', 'namespace' => 'Management'], function 
             ->name('management-login');
 
         Route::get('/logout', 'ManagementController@Logout')
-            ->name('management-logout');
+            ->name('management-logout')->middleware('auth');
     });
 
 });
