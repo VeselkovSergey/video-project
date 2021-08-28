@@ -80,7 +80,10 @@
             let vid = URL.createObjectURL(videoBlob); // IE10+
             // Video is now downloaded
             // and we can set it as source on the video element
-            document.body.querySelector('video').src = vid;
+            let blobVideo = document.body.querySelector('video');
+            let currentTime = blobVideo.currentTime;
+            blobVideo.src = vid;
+            blobVideo.currentTime = currentTime;
         }
     }
     req.onerror = function() {
