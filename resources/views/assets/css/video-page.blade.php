@@ -71,7 +71,8 @@
     }
 
     .videoContainer__video {
-        max-width: 100%
+        max-width: 100%;
+        position: relative;
     }
 
     .videoContainer__video video {
@@ -113,16 +114,22 @@
         background-color: #c40013
     }
 
+    .videoContainer__manager {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+    }
     .videoContainer__manager ._play,
     .videoContainer__manager ._pause {
-        background-color: #000;
-        border-radius: 50%;
+        /*background-color: #000;*/
+        /*border-radius: 50%;*/
         position: absolute;
-        left: 15px;
-        top: 15px;
-        width: 48px;
-        height: 48px;
-        fill: white
+        left: 50%;
+        top: 50%;
+        /*width: 48px;*/
+        /*height: 48px;*/
+        /*fill: white*/
     }
 
     .videoContainer__way {

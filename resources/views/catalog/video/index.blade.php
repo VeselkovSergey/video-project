@@ -17,6 +17,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{{$video->name}}</title>
     @include('assets.css.video-page')
+    <style>
+
+        .bezel {
+            position: absolute;
+            /*left: calc(50% - 20px);*/
+            left: 50%;
+            top: 50%;
+            /*top: calc(50% - 34.14px);*/
+            width: 52px;
+            height: 52px;
+            z-index: 19;
+            margin-left: -26px;
+            margin-top: -26px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 26px;
+            pointer-events: none;
+        }
+
+        /*.bezel[aria-label="Пауза"] {*/
+        /*    left: 55%;*/
+        /*}*/
+
+        .bezel-icon {
+            width: 40px;
+            height: 40px;
+            margin: 6px;
+        }
+
+        .large-play-button:hover .large-play-button-bg {
+            /*-webkit-transition: fill .1s cubic-bezier(0, 0, 0.2, 1), fill-opacity .1s cubic-bezier(0, 0, 0.2, 1);*/
+            /*transition: fill .1s cubic-bezier(0, 0, 0.2, 1), fill-opacity .1s cubic-bezier(0, 0, 0.2, 1);*/
+            /*fill: #f00;*/
+            /*fill-opacity: 1;*/
+        }
+
+        .large-play-button-bg {
+            /*-webkit-transition: fill .1s cubic-bezier(0.4, 0, 1, 1), fill-opacity .1s cubic-bezier(0.4, 0, 1, 1);*/
+            /*transition: fill .1s cubic-bezier(0.4, 0, 1, 1), fill-opacity .1s cubic-bezier(0.4, 0, 1, 1);*/
+            /*fill: #212121;*/
+            /*fill-opacity: .8;*/
+        }
+        .large-play-button.button {
+            position: absolute;
+            top: calc(50% - 34.14px);
+            left: calc(50% - 50px);
+            width: 100px;
+            background-color: inherit;
+            border: unset;
+            cursor: pointer;
+        }
+        .bezel-text-hide {
+            width: 100%;
+            height: 100%;
+        }
+        .bezel {
+            -webkit-animation: bezel-fadeout .1s linear 1 normal forwards;
+            animation: bezel-fadeout .1s linear 1 normal forwards;
+        }
+        .videoContainer__manager ._pause,
+        .videoContainer__manager ._play {
+            top: 0;
+            left: 0;
+            opacity: 0;
+            /*cursor: pointer;*/
+        }
+        @-webkit-keyframes bezel-fadeout {
+            0% {
+                opacity: 1
+            }
+            to {
+                /*opacity: 0.5;*/
+                -webkit-transform: scale(2);
+                transform: scale(2)
+            }
+            /*to {*/
+            /*    opacity: 1;*/
+            /*}*/
+        }
+
+        @keyframes bezel-fadeout {
+            0% {
+                opacity: 1
+            }
+            to {
+                /*opacity: 0.5;*/
+                -webkit-transform: scale(2);
+                transform: scale(2)
+            }
+            /*to {*/
+            /*    opacity: 1;*/
+            /*}*/
+        }
+    </style>
 </head>
 <body>
 <div class="main-wrap">
@@ -25,6 +118,40 @@
             <div class="videoContainer__video">
                 <video src="{{$video->LinkFileVideo()}}" preload="metadata"
                        poster="{{$video->LinkFilePosterVideo()}}"></video>
+                <div class="videoContainer__manager">
+                    <div style="display: none;" class="bezel-text-hide _pause js--pause">
+                        <div class="bezel" role="status" aria-label="Пауза">
+                            <div class="bezel-icon">
+                                <svg height="100%" viewBox="0 0 36 36" width="100%">
+                                    <use class="svg-shadow" xlink:href="#id-86"></use>
+                                    <path class="svg-fill" d="M 12,26 16,26 16,10 12,10 z M 21,26 25,26 25,10 21,10 z"
+                                          id="id-86"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="/*display: none;*/ opacity: 1;" class="bezel-text-hide _play js--play">
+                        <div class="bezel" role="status" aria-label="Смотреть">
+                            <div class="bezel-icon">
+                                <svg height="100%" version="1.1" viewBox="0 0 36 36" width="100%">
+                                    <use class="svg-shadow" xlink:href="#id-89"></use>
+                                    <path class="svg-fill" d="M 12,26 18.5,22 18.5,14 12,10 z M 18.5,22 25,18 25,18 18.5,14 z"
+                                          id="id-89"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+{{--                    <button class="large-play-button button firstPlayButton" aria-label="Смотреть">--}}
+{{--                        <svg height="100%" viewBox="0 0 68 48" width="100%">--}}
+{{--                            <path class="large-play-button-bg"--}}
+{{--                                  d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"--}}
+{{--                                  fill="#f00"></path>--}}
+{{--                            <path d="M 45,24 27,14 27,34" fill="#fff"></path>--}}
+{{--                        </svg>--}}
+{{--                    </button>--}}
+                </div>
             </div>
             <div class="videoContainer__test">
                 @foreach($parts['start'] as $partKey => $part)
@@ -39,20 +166,7 @@
                 @endforeach
             </div>
 
-            <div class="videoContainer__manager">
-                <div class="_play js--play">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path
-                            d="M256 0C114.617 0 0 114.615 0 256s114.617 256 256 256 256-114.615 256-256S397.383 0 256 0zm88.48 269.57l-128 80A16.01 16.01 0 0 1 208 352a15.95 15.95 0 0 1-7.758-2.008C195.156 347.172 192 341.82 192 336V176c0-5.82 3.156-11.172 8.242-13.992 5.086-2.836 11.305-2.664 16.238.422l128 80A16.02 16.02 0 0 1 352 256c0 5.515-2.844 10.641-7.52 13.57z"/>
-                    </svg>
-                </div>
-                <div class="_pause js--pause" style="display:none;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 409.6 409.6">
-                        <path
-                            d="M204.8 0C91.648 0 0 91.648 0 204.8s91.648 204.8 204.8 204.8 204.8-91.648 204.8-204.8S317.952 0 204.8 0zm-22.528 256c0 12.8-10.24 22.528-22.528 22.528-12.8 0-22.528-10.24-22.528-22.528V153.6c-.512-12.288 9.728-22.528 22.016-22.528 12.8 0 23.04 10.24 23.04 22.528V256zm90.624 0c0 12.8-10.24 22.528-22.528 22.528-12.8 0-22.528-10.24-22.528-22.528V153.6c-.512-12.288 9.728-22.528 22.016-22.528 12.8 0 23.04 10.24 23.04 22.528V256z"/>
-                    </svg>
-                </div>
-            </div>
+
 
             <div class="videoContainer__way">
                 @foreach($parts['start'] as $partKey => $part)

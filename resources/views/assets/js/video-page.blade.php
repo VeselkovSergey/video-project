@@ -3,6 +3,7 @@
 
         let video = document.querySelector('.videoContainer__video video');
         let buttonPlay = document.querySelector('.js--play');
+        let firstPlayButton = document.querySelector('.firstPlayButton');
         let buttonPause = document.querySelector('.js--pause');
         let currentTime = 0;
         let videoMap = [
@@ -47,17 +48,26 @@
             PlayVideo();
         });
 
+        // firstPlayButton.addEventListener('click', () => {
+        //     firstPlayButton.style.display = 'none';
+        //     PlayVideo();
+        // });
+
         buttonPause.addEventListener('click', () => {
-            PauseVideo();
+            PauseVideo(true);
         });
 
         video.addEventListener('ended', () => {
-            PauseVideo();
-            step = 0;
-            stopTime = videoMap[step]['intro'].end;
-            nextQuestionStartTime = videoMap[step]['intro'].start;
-            nextQuestionStopTime = videoMap[step]['intro'].end;
+            PauseVideo(true);
+            ResetVideo();
         });
+
+        function ResetVideo() {
+            step = 0;
+            stopTime = videoMap[0]['intro'].end;
+            video.currentTime = videoMap[0]['intro'].start;
+            nextQuestionStopTime = videoMap[0]['intro'].end;
+        }
 
         video.addEventListener('timeupdate', () => {
             currentTime = video.currentTime;
@@ -69,10 +79,12 @@
                     video.currentTime = videoMap[step]['question'].start;
                 } else {
                     if (waitAnswer === false && showsAnswer === false) {
-                        PauseVideo();
-                        waitAnswer = true;
+                        PauseVideo(videoMapSize === step);
                         if (videoMapSize > step) {
+                            waitAnswer = true;
                             document.body.querySelector('.step' + (step)).style.display = '';
+                        } else {
+                            ResetVideo();
                         }
                     } else if (showsAnswer === true) {
                         showsAnswer = false;
@@ -87,23 +99,24 @@
             if (!waitAnswer) {
                 video.play();
                 videoIsPlaying = true;
-                buttonPause.style.opacity = '1';
-                buttonPlay.style.opacity = '0';
 
                 buttonPause.style.display = '';
                 buttonPlay.style.display = 'none';
             }
         }
 
-        function PauseVideo() {
+        function PauseVideo(manualPause) {
             if (!waitAnswer) {
                 video.pause();
                 videoIsPlaying = false;
-                buttonPlay.style.opacity = '1';
-                buttonPause.style.opacity = '0';
-
                 buttonPlay.style.display = '';
                 buttonPause.style.display = 'none';
+
+                if (manualPause) {
+                    buttonPlay.style.opacity = '1';
+                } else {
+                    buttonPlay.style.opacity = '0';
+                }
             }
         }
 
