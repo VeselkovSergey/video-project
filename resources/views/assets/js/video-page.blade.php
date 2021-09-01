@@ -55,14 +55,21 @@
         buttonFullScreen.addEventListener('click', () => {
             if (fullScreen === false) {
                 videoContainer.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        document.addEventListener('fullscreenchange', (event) => {
+            if (fullScreen === false) {
                 videoContainerInner.style.width = '80%';
                 fullScreen = true;
             } else {
-                document.exitFullscreen();
-                videoContainerInner.style.width = '800px';
                 fullScreen = false;
+                videoContainerInner.style.width = '800px';
+
             }
-        });
+        })
 
         // firstPlayButton.addEventListener('click', () => {
         //     firstPlayButton.style.display = 'none';
