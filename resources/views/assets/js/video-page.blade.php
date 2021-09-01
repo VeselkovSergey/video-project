@@ -5,9 +5,9 @@
         let buttonPlay = document.querySelector('.js--play');
         let firstPlayButton = document.querySelector('.firstPlayButton');
         let buttonPause = document.querySelector('.js--pause');
-        let buttonFullScreen = document.querySelector('.icon-full-screen');
-        let videoContainer = document.querySelector('.videoContainer');
-        let videoContainerInner = document.querySelector('.videoContainer__inner');
+        // let buttonFullScreen = document.querySelector('.icon-full-screen');
+        // let videoContainer = document.querySelector('.videoContainer');
+        // let videoContainerInner = document.querySelector('.videoContainer__inner');
         let currentTime = 0;
         let videoMap = [
             {
@@ -46,30 +46,30 @@
         let nextQuestionStartTime = videoMap[step]['intro'].start;
         let nextQuestionStopTime = videoMap[step]['intro'].end;
         let videoIsPlaying = false;
-        let fullScreen = false;
+        // let fullScreen = false;
 
         buttonPlay.addEventListener('click', () => {
             PlayVideo();
         });
 
-        buttonFullScreen.addEventListener('click', () => {
-            if (fullScreen === false) {
-                videoContainer.requestFullscreen();
-            } else {
-                document.exitFullscreen();
-            }
-        });
+        // buttonFullScreen.addEventListener('click', () => {
+        //     if (fullScreen === false) {
+        //         videoContainer.requestFullscreen();
+        //     } else {
+        //         document.exitFullscreen();
+        //     }
+        // });
 
-        document.addEventListener('fullscreenchange', (event) => {
-            if (fullScreen === false) {
-                videoContainerInner.style.width = '80%';
-                fullScreen = true;
-            } else {
-                fullScreen = false;
-                videoContainerInner.style.width = '800px';
-
-            }
-        })
+        // document.addEventListener('fullscreenchange', (event) => {
+        //     if (fullScreen === false) {
+        //         videoContainerInner.style.width = '80%';
+        //         fullScreen = true;
+        //     } else {
+        //         fullScreen = false;
+        //         videoContainerInner.style.width = '800px';
+        //
+        //     }
+        // })
 
         // firstPlayButton.addEventListener('click', () => {
         //     firstPlayButton.style.display = 'none';
