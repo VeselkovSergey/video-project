@@ -143,6 +143,11 @@
                         </div>
                     </div>
 
+                    <div class="container-for-icon-full-screen">
+                        <div class="icon-full-screen">
+                        </div>
+                    </div>
+
 {{--                    <button class="large-play-button button firstPlayButton" aria-label="Смотреть">--}}
 {{--                        <svg height="100%" viewBox="0 0 68 48" width="100%">--}}
 {{--                            <path class="large-play-button-bg"--}}
